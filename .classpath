@@ -3,8 +3,8 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
-	<classpathentry kind="lib" path="/opt/pig-0.9.1/pig-0.9.1.jar"/>
-	<classpathentry kind="lib" path="/opt/pig-0.9.1/pigunit.jar"/>
-	<classpathentry kind="lib" path="/Users/msukmanowsky/Dropbox/Projects/OmnitureHadoop.jar"/>
+	<classpathentry kind="lib" path="C:/work/JAVA/christies/OmnitureTextLoader/trunk/lib/pigunit-0.11.1.jar"/>
+	<classpathentry kind="lib" path="C:/work/JAVA/christies/OmnitureTextLoader/trunk/lib/pig-0.11.1.jar"/>
+	<classpathentry kind="lib" path="C:/work/JAVA/christies/OmnitureTextLoader/trunk/lib/hamcrest-all-1.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

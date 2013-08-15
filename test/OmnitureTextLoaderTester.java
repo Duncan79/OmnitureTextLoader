@@ -6,6 +6,7 @@ import java.util.Iterator;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.InputSplit;
 import org.apache.hadoop.mapreduce.RecordReader;
@@ -16,7 +17,7 @@ import org.apache.pig.pigunit.PigTest;
 import org.apache.pig.tools.parameters.ParseException;
 
 import com.tgam.hadoop.pig.OmnitureTextLoader;
-import com.tgam.hadoop.util.EscapedLineReader;
+import com.tgam.hadoop.pig.EscapedLineReader;
 
 public class OmnitureTextLoaderTester {
 	
@@ -32,7 +33,7 @@ public class OmnitureTextLoaderTester {
 	}
 	
 	@Test
-	// TODO: Fix this - this unit test doesn't really work.  Keep getting OutOfMemoryErrors which make no sense.
+	// TODO: Fix this - this unit test DOES NOT WORK (yet)!
 	public void topVisitorsByPageViews() throws IOException, ParseException {		
 		PigTest test = new PigTest("test/page_views_by_visitor.pig");
 		
@@ -60,14 +61,14 @@ public class OmnitureTextLoaderTester {
 		
 		// Check that the tuple is structurally correct first
 		assertNotNull(tuple);
-		assertEquals(tuple.size(), 226);
+		assertEquals(254, tuple.size());
 		
 		// Now we'll check that the tuple contains some of the right values
-		String language = (String)tuple.get(2);
-		String ipAddress = (String)tuple.get(8);
+		String language = (String)tuple.get(77);
+		String ipAddress = (String)tuple.get(72);
 				
 		assertEquals("en-ca", language);
-		assertEquals("161.114.64.75", ipAddress);
+		assertEquals("192.168.115.128", ipAddress);
 	}
 	
 	@Test
@@ -77,7 +78,7 @@ public class OmnitureTextLoaderTester {
 		Tuple t = loader.getNext();
 		
 		assertNotNull(t);
-		assertEquals(t.size(), 226);
+		assertEquals(254, t.size());
 		
 		DataBag event_list = (DataBag)t.get(6);
 		Iterator<Tuple> it = event_list.iterator();
@@ -88,7 +89,7 @@ public class OmnitureTextLoaderTester {
 	}
 		
 	@SuppressWarnings("rawtypes")
-	public class MockRecordReader extends RecordReader {
+	public class MockRecordReader extends RecordReader<LongWritable, Text> {
 		private EscapedLineReader lineReader;
 		private long key;
 		private boolean hasLinesLeft;
@@ -108,8 +109,8 @@ public class OmnitureTextLoaderTester {
 		public void close() throws IOException { }
 		
 		@Override
-		public Object getCurrentKey() throws IOException, InterruptedException {
-			return key;
+		public LongWritable getCurrentKey() throws IOException, InterruptedException {
+			return new LongWritable(key);
 		}
 		
 		@Override
