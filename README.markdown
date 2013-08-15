@@ -5,6 +5,8 @@ An Apache Pig UDF (custom Loader) which allows the reading and parsing of raw Om
 
 Looking to perform analysis with Hive instead of Pig? You can simply use the underlying InputFormat directly see [OmnitureDataFileInputFormat](https://github.com/msukmanowsky/OmnitureDataFileInputFormat).
 
+Note that this has been forked and updated to work with Pig 0.11.1 and Omniture vTBC.
+
 ## usage in pig
 To use `OmnitureTextLoader` in a Pig script, you will first have to register both the [InputFormat](https://github.com/msukmanowsky/OmnitureDataFileInputFormat) well as the UDF.
 
